@@ -1,6 +1,9 @@
 import 'package:book_exchange_app/bookmodel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'search_screen.dart';
+import 'wishlist_screen.dart';
+import 'cart_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -61,6 +64,7 @@ class _HomeState extends State<Home> {
                             height: 334,
                             viewportFraction: 0.48,
                             enlargeCenterPage: true,
+                            autoPlay: true,
                           ),
                           itemCount: book.length - 5,
                           itemBuilder: (BuildContext context, int index, int realIndex) {
@@ -325,104 +329,69 @@ class _HomeState extends State<Home> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 12.0, top: 5),
                             child: Text(
-                              'Email Address',
+                              'Email',
                               style: TextStyle(color: Colors.grey),
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 130, left: 240),
-                    height: 40,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Color(0xff5ABD8C),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(color: Colors.white),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: Color(0xff5ABD8C),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
                       ),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
-              height: 30,
-            )
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: EdgeInsets.only(top: 10),
-          height: 60,
-          color: Color(0xff5ABD8C),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Icon(
-                    Icons.home,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Home',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Search',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Wishlist',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Cart',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchScreen()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.favorite_border),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WishlistScreen()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartScreen()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
